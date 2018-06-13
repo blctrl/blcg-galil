@@ -1,0 +1,118 @@
+record(motor, "X14W1:OP:Mono:Bragg_up")
+{
+	field(DTYP, "SC-800")
+    	field(DESC, "X14W1:OP:Mono:Bragg,4001") 
+	field(VBAS, "90")
+	field(VELO, "720")
+	field(ACCL, "0.1")
+	field(OUT, "#C0S0@")	field(ERES, "0.0225")
+    	field(ERES,"0.0225")    
+	field(MRES, "0.1")      #1/4 Micro-step
+	field(PREC, "4")
+	field(RTRY, "0")
+	field(DHLM, "145550.3")
+	field(DLLM, "-8173")
+	field(UEIP, "Yes")
+	field(TWV, "100")
+	field(OMSL, "1")
+
+	field(EGU, "arcsec")
+}
+
+record(motor,"X14W1:OP:Mono:Hor") 
+{ 
+	field(DTYP, "SC-800")
+    	field(DESC,"X14W1:OP:Mono:Xt,4001") 
+	field(VBAS, "100")
+	field(VELO, "200")
+	field(ACCL, "0.1")
+	field(OUT, "#C0S1@")
+	field(MRES, "0.4")      #full step
+	field(PREC, "2")
+	field(RTRY, "0")
+	field(DHLM, "35848")
+	field(DLLM, "-35909")
+	field(UEIP, "No")
+	field(TWV, "1")
+	field(EGU, "um")
+}
+
+
+
+record(motor,"X14W1:OP:Mono:Ver") 
+{ 
+	field(DTYP, "SC-800")
+    	field(DESC,"X14W1:OP:Mono:Zt,4001") 
+	field(VBAS, "20")
+	field(VELO, "50")
+	field(ACCL, "0.1")
+	field(OUT, "#C0S2@")
+	field(MRES, "0.022")      #full step
+	field(PREC, "3")
+	field(RTRY, "0")
+	field(DHLM, "25522")
+	field(DLLM, "-5389")
+	field(TWV, "100")
+	field(EGU, "um")
+}
+
+record(motor,"X14W1:OP:Mono:T2") 
+{ 
+	field(DTYP, "SC-800")
+	field(DESC, "X14W1:OP:Mono:t2,4002")
+	field(VBAS, "0.1")
+	field(VELO, "0.2")
+	field(ACCL, "0.1")
+	field(OUT, "#C1S0@")
+    	field(ERES,"0.0001")    
+	field(MRES, "0.0002")   #full step
+	field(PREC, "4")
+	field(RTRY, "0")
+	field(DHLM, "15.718")
+	field(DLLM, "-5.467")
+	field(UEIP, "Yes")
+	field(TWV, "0.1")
+	field(EGU, "mm")
+}
+
+record(motor,"X14W1:OP:Mono:Pitch2") 
+{ 
+	field(DTYP, "SC-800")
+	field(DESC, "X14W1:OP:Mono:Pitch2,4002")
+	field(VBAS, "20")
+	field(VELO, "50")
+	field(ACCL, "0.1")
+	field(OUT, "#C1S1@")
+    	field(ERES,"0.01")    
+	field(MRES, "0.02")   #full step
+	field(PREC, "3")
+	field(RTRY, "0")
+	field(DHLM, "3951.14")
+	field(DLLM, "-3989.78")
+	field(UEIP, "Yes")
+	field(TWV, "100")
+	field(EGU, "arcsec")
+}
+
+
+record(motor,"X14W1:OP:Mono:Roll2") 
+{ 
+	field(DTYP, "SC-800")
+	field(DESC, "X14W1:OP:Mono:Roll2,4002")
+	field(VBAS, "20")
+	field(VELO, "50")
+	field(ACCL, "0.1")
+	field(OUT, "#C1S2@")
+    	field(ERES,"0.01")    
+	field(MRES, "0.025")   #full step
+	field(PREC, "3")
+	field(RTRY, "0")
+	field(DHLM, "4332.5")
+	field(DLLM, "-4331.9")
+	field(UEIP, "Yes")
+	field(TWV, "100")
+	field(EGU, "arcsec")
+}
+
+
+#####################end####################################

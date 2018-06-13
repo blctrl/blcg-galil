@@ -1,0 +1,53 @@
+record(ai,"AUTOTEST:Motor")
+{
+    field(PREC,"0")
+    field(VAL,"0")
+}
+
+record(ai,"AUTOTEST:Step")
+{
+    field(PREC,"4")
+    field(VAL,"0.01")
+}
+
+record(ai,"AUTOTEST:Times")
+{
+    field(PREC,"0")
+    field(VAL,"20")
+}
+
+record(stringin,"AUTOTEST:Filename")
+{
+    field(DTYP,"Soft Channel")
+    field(VAL,"temp.dat")
+}
+
+record(stringin,"AUTOTEST:Filename:Readback")
+{
+    field(DTYP,"Soft Channel")
+    field(VAL,"temp.dat")
+}
+
+record(waveform,"AUTOTEST:RVAL") 
+{
+  field(FTVL,"DOUBLE")
+  field(NELM,"1000")
+}
+
+record(waveform,"AUTOTEST:RRBV") 
+{
+  field(FTVL,"DOUBLE")
+  field(NELM,"1000")
+}
+
+record(waveform,"AUTOTEST:DVAL") 
+{
+  field(FTVL,"DOUBLE")
+  field(NELM,"1000")
+}
+
+record(waveform,"AUTOTEST:DRBV") 
+{
+  field(FTVL,"DOUBLE")
+  field(NELM,"1000")
+}

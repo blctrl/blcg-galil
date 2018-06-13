@@ -1,0 +1,4 @@
+OS-class: Linux
+Target-arch: linux-x86_64
+Tests: arrayOpTest.t recMiscTest.t linkRetargetLinkTest.t linkInitTest.t compressTest.t asyncSoftTest.t asTest.t analogMonitorTest.t regressTest.t
+Files: ../O.Common/recTestIoc.dbd ../arrayOpTest.db ../recMiscTest.db ../linkRetargetLink.db ../linkInitTest.db ../compressTest.db ../asyncSoftTest.db ../O.Common/asTestIoc.dbd ../asTest.db ../O.Common/analogMonitorTest.dbd ../analogMonitorTest.db ../O.Common/regressTest.dbd ../regressArray1.db

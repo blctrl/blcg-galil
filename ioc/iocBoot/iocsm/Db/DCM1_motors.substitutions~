@@ -1,0 +1,51 @@
+# $File: //ASP/Dev/SBS/4_Controls/4_3_Network_Infrastructure/4_3_1_Comms_Common_Services/sw/device_drivers/Galil/1-5/galilTestApp/Db/galil_motor_withwrappers.substitutions $
+# $Revision: #3 $
+# $DateTime: 2012/03/22 09:46:31 $
+# $Author: cliftm $
+#
+# Description
+# Substitution file for motor_withwrappers.template
+#
+# MOVNFLNK FLNK when moving status is updated
+# LIMITFLNK FLNK when limits are updated
+# READBACK used to set read back to user or dial coordinates
+# 
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# Licence as published by the Free Software Foundation; either
+# version 2.1 of the Licence, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public Licence for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# Licence along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+# 
+# Contact details:
+# mark.clift@synchrotron.org.au
+# 800 Blackburn Road, Clayton, Victoria 3168, Australia.
+#
+
+file "$(GALIL)/GalilSup/Db/galil_motor.template"
+{
+pattern
+{   P,       M,   PORT,    ADDR, EGU, DESC, VELO, VBAS,  ACCL,  PREM,  POST,  BACC,  MRES,  SREV, ERES,  TWV,   PREC, DHLM,    DLLM,    VMAX,     UEIP, RTRY, PCOF, ICOF, DCOF}
+
+# Real motors #
+
+
+   {"DCM1", "Bragg",  "Galil2183", 0, arcsec, "Bragg-S0", 50,  20,  0.2, "SH", "", .5, 0.09, 1000,  0.027,  100,  3, 720000, -720000, 100, 0, 2, 0, 0, 0}
+   {"DCM1", "Bragg_E1", "Galil2183", 1, arcsec,"Bragg-encoder-S1", 50,  20,  0.2, "SH", "", .5, .09, 1000,  0.027,  100,  3, 36000, -7200, 100, 1, 2, 0, 0, 0}
+   {"DCM1", "T1",     "Galil2183", 2, um,     "Z1-S2",    50,  20,  0.2, "SH", "", .5,  0.1,  500, -0.02,  100,  3,  7000, -2000, 100,  0, 2, 0, 0, 0}
+   {"DCM1", "T1_E", "Galil2183", 3, um,     "Z1-S3",    50,  20,  0.2, "SH", "", .5,    .02,  500, -0.02,  100,  3,  7000, -2000, 100,  1, 2, 0, 0, 0}
+   {"DCM1", "Roll2",  "Galil2183", 4, arcsec, "Roll2-S4", 50,  20,  0.2, "SH", "", .5, .4,  1000,  .1, 100, 3,  3600, -3600, 100,  0, 2, 0, 0, 0}
+   {"DCM1", "Bragg_E2", "Galil2183", 5, arcsec, "Bragg-encoder-S5", 50,  20,  0.2, "SH", "", .09, .4,  1000,  .027, 100, 3,  3600, -3600, 100,  1, 2, 0, 0, 0}
+   {"DCM1", "Motor7", "Galil2183", 6, arcsec, "Pitch1-S6",50,  20,  0.2, "SH", "", .5, .4,  1000,  .4, 100, 3,  3600, -3600, 100,  0, 2, 0, 0, 0}
+   {"DCM1", "Pitch1_E", "Galil2183", 7, um,"Pitch1-Encoder-S8",50,  20,  0.2, "SH", "", .5, 0.02,  1000, 0.02, 100, 3,  3600, -3600, 100,  1, 2, 0, 0, 0}
+
+}
+# end
+

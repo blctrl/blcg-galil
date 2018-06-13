@@ -1,0 +1,152 @@
+###############################17B1:op:MONO#####################################
+#*********************************************************************************
+#TWO motor records for two step motors:   bragg& T2
+#*********************************************************************************
+record(motor,"X17B1:OP:MONO:T2") 
+{ 
+    field(DTYP,"OMS MAXv") 
+    field(DESC,"X17B1:OP:MONO:T2-VME") 
+    field(VBAS,"0.1")
+    field(VELO,"0.2") 
+    field(ACCL,"0.1")
+    field(OUT,"#C0S1@")
+    field(MRES,"0.0002")	#1mm  0.072 1/10,
+    field(SREV,"5000")
+    field(PREC,"5")
+    field(BVEL,"0.2")
+    field(BACC,"0.1")
+    field(BDST,"0")
+    field(FRAC,"1.0") 
+    field(DHLM,"0") 
+    field(DLLM,"0") 
+    field(RTRY,"3") 
+    field(UEIP,"No")  
+    field(PREM,"AN LH")
+    field(POST,"AF")    
+    field(TWV,"10") 
+    field(EGU,"mm") 
+    field(OFF,"0") 
+#    field(INIT,"AN LP0")
+    field(FOFF,"Frozen")
+}
+
+record(motor,"X17B1:OP:MONO:Bragg:Motor") 
+{ 
+    field(DTYP,"OMS MAXv") 
+    field(DESC,"X17B1:OP:MONO:Bragg_MOTOR") 
+    field(VBAS,"0.05")
+    field(VELO,"0.1")
+    field(ACCL,"0.1")
+    field(OUT,"#C0S0@")
+    field(SREV,"1000")
+    field(MRES,"0.00005")
+    field(PREC,"6")
+    field(BACC,"0.5")
+    field(BDST,"0")
+    field(FRAC,"1.0")
+    field(DHLM,"149500") 
+    field(DLLM,"-20000") 
+    field(RTRY,"3")
+    field(UEIP,"Yes")
+    field(ERES,"0.00005")  #2012-10-15 change in Xian
+    field(OFF,"0")    #0.4323") 
+    field(TWV,"0.1") 
+    field(EGU,"deg")
+    field(PREM,"AN LH")
+    field(POST,"AF")    
+    field(INIT,"HE EH111")
+    field(HVEL, "0.1")
+    field(FOFF,"Frozen")
+}
+
+record(motor,"X17B1:OP:MONO:Bragg:Energy") 
+{ 
+    field(DTYP,"Soft Channel") 
+    field(DESC,"Bragg Energy")
+    field(OUT,"X17B1:OP:MONO:Bragg:E2M.A  PP MS") 
+    field(RDBL,"X17B1:OP:MONO:Bragg:M2E.E  NPP MS")   
+    field(URIP,"Yes")       
+    field(MRES,"0.0001") 
+    field(RRES,"1.000")                        		
+    field(PREC,"5") 
+    field(OFF,"0")
+    field(DHLM,"350") 
+    field(DLLM,"1") 
+    field(TWV,"10") 
+    field(RTRY,"0")  					
+    field(EGU,"keV")
+    field(STOO," X17B1:OP:MONO:Bragg:Motor.STOP  PP MS")
+    field(DINP,"X17B1:OP:MONO:Bragg:Motor.DMOV  NPP MS")
+#    field(NTM, "NO")
+}
+
+record(transform,"X17B1:OP:MONO:Bragg:E2M") 
+{ 
+    field(DESC,"From energy to motor")
+    field(PREC,"8")
+    field(CLCC,"3.140639")
+    field(CLCE,"12.39842/(2*C*A)")            
+    field(CLCF,"57.2957795*ASIN(E)")   #EGU:deg
+    field(OUTF,"X17B1:OP:MONO:Bragg:Motor.VAL PP MS")
+}
+
+
+record(transform,"X17B1:OP:MONO:Bragg:M2E") 
+{ 
+   
+    field(DESC,"From motor to energy")
+    field(PREC,"8")
+    field(INPA,"X17B1:OP:MONO:Bragg:Motor.RBV CP MS")  
+    field(CLCB,"MAX(A)<0.5?0.5:A")                      
+    field(CLCC,"3.140639")                      
+    field(CLCD,"SIN(B/57.2957795)")	   #EGU:deg
+    field(CLCE,"12.39842/(2*C*D)") 
+    field(CLCF,"E")
+    field(OUTF,"X17B1:OP:MONO:Bragg:E2M.A NPP MS")
+}
+
+record(transform,"X17B1:OP:MONO:Bragg:Convert4") 
+{ 
+   
+    field(INPA,"1")  
+
+}
+#***********************Bragg and T2 collaboration*********
+
+record(bi,"X17B1:OP:MONO:CoordinateIs") 
+{ 
+    field(DTYP,"Soft Channel") 
+#    field(DESC,"get CoordinateIs choice value")
+    field(ZNAM,"No")
+    field(ONAM,"Yes")
+#    field(PREC,"0")
+    field(FLNK, "X17B1:OP:MONO:Coordinate")
+}
+
+record(transform,"X17B1:OP:MONO:Coordinate") 
+{ 
+    field(DESC,"Coordinate Bragg - Z")
+    field(PREC,"0")
+    field(INPA,"X17B1:OP:MONO:CoordinateIs.VAL NPP NMS")
+    field(INPC,"X17B1:OP:MONO:Bragg:Motor.DMOV CP NMS")
+    field(CLCD,"!C")
+    field(CLCE,"A&&D")
+    field(CLCF,"B+E")  #the value of B from "Compensate" Button of the edm interface
+    field(OUTF,"X17B1:OP:MONO:BraggtoZ.DISV PP MS")
+    field(FLNK, "X17B1:OP:MONO:BraggtoZ")
+ 		
+}
+
+record(transform,"X17B1:OP:MONO:BraggtoZ") 
+{
+    field(DESC,"Calculate Z.val from Bragg ")
+    field(PREC,"3")
+    field(INPA,"X17B1:OP:MONO:Bragg:Motor.RBV CP MS")
+    field(CLCB,"A")	   #EGU:deg
+    field(CLCC,"12.5/COS(3.1415926/6)")	
+    field(CLCD,"12.5/COS(B/57.2957795)")	#3.1415926/180=1/57.2957795
+    field(CLCE,"D-C")
+    field(CLCF,"E")
+    field(OUTF,"X17B1:OP:MONO:T2.VAL PP MS")
+}
+##############################MONO#####################################

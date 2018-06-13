@@ -1,0 +1,72 @@
+record(motor,"X14W1:OP:MONO:Pitch2:Piezo") 
+{ 
+    field(DTYP,"PIE816") 
+    field(DESC,"Pitch2-Piezo:10.30.72.117:4003")   
+    field(DIR,"Pos") 
+    field(HVEL,"405")
+#    field(RTRY,"3") 
+    field(OUT,"#C0S0@") 
+    field(MRES,"0.0001") 
+    field(SREV,"1") 
+    field(PREC,"5")
+    field(EGU,"um") 
+
+    field(DHLM,"100") 
+    field(DLLM,"-10") 
+
+    field(INIT,"SVO #1")
+    field(PREM,"") 
+    field(POST,"") 
+    field(RDBD,"0.02") 
+    field(RTRY,"5") 
+    field(TWV,"1") 
+    field(OFF,"0") 
+    field(DLY,"0.1") 
+    field(UEIP,"Yes") 
+}
+
+record(bo,"X14W1:OP:MONO:Pitch2V:Piezo-R") 
+{
+    field(DTYP,"Soft Channel") 
+    field(DESC,"Pitch2-Piezo:refresh")
+    field(SCAN,".1 second")
+    field(VAL,"1")
+    field(FLNK,"X14W1:OP:MONO:Pitch2:Piezo.PROC")
+
+} 
+record(motor,"X14W1:OP:MONO:Roll2:Piezo") 
+{ 
+    field(DTYP,"PIE816") 
+    field(DESC,"Pitch2-Piezo:10.30.72.117.4004")   
+    field(DIR,"Pos") 
+    field(HVEL,"405")
+    field(RTRY,"3") 
+    field(OUT,"#C1S0@") 
+    field(MRES,"0.0001") 
+    field(SREV,"1") 
+    field(PREC,"5")
+    field(EGU,"um") 
+
+    field(DHLM,"100") 
+    field(DLLM,"-10") 
+
+    field(INIT,"SVO #1")   #DCO #1
+    field(PREM,"") 
+    field(POST,"") 
+    field(RDBD,"0.02") 
+    field(RTRY,"5") 
+    field(TWV,"1") 
+    field(OFF,"0") 
+    field(DLY,"0.1") 
+    field(UEIP,"Yes") 
+}
+
+record(bo,"X14W1:OP:MONO:Roll2V:Piezo-R") 
+{
+    field(DTYP,"Soft Channel") 
+    field(DESC,"Pitch2-Piezo:refresh")
+    field(SCAN,".1 second")
+    field(VAL,"1")
+    field(FLNK,"X14W1:OP:MONO:Pitch2:Piezo.PROC")
+
+} 

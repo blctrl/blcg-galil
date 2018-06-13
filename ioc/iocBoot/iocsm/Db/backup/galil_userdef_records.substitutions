@@ -1,0 +1,77 @@
+# $File: //ASP/Dev/SBS/4_Controls/4_3_Network_Infrastructure/4_3_1_Comms_Common_Services/sw/device_drivers/Galil/1-5/galilTestApp/Db/galil_userdef_records.substitutions $
+# $Revision: #2 $
+# $DateTime: 2012/03/20 11:55:19 $
+# $Author: cliftm $
+#
+# Description
+# Substitution file for user defined commands and monitors
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# Licence as published by the Free Software Foundation; either
+# version 2.1 of the Licence, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public Licence for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# Licence along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+# 
+# Contact details:
+# mark.clift@synchrotron.org.au
+# 800 Blackburn Road, Clayton, Victoria 3168, Australia.
+
+# P:EPICSName_MONITOR
+# P:EPICSName_STATUS
+# P:EPICSName_SP
+# P:EPICSName_CMD
+
+# GalilStr is a galil command or variable 
+# eg. TI0, SB 1, user variable name, etc
+
+# DRVCMD = VAR (GalilStr is a galil variable)
+# DRVCMD = CMD (GalilStr is a galil command)
+# SCAN = use I/O Intr when EPICS only will change the value.
+#        use Periodic scan when external will change value.
+# PINI = YES will push autosave or default value to controller at startup
+
+file "$(GALIL)/GalilSup/Db/galil_userdef_records.template"
+{
+
+pattern
+{ P,               PORT,    EPICSName,        GalilStr, DRVCMD, SCAN,       DRVL, DRVH, LOW,  HIGH, LSV,     HSV,     ZNAM,      ONAM,  ZSV,      OSV,        DEFAULT, EGU,  PINI }
+ 
+ {"X14B1:EX:Diff",   "Galil2183",     "EXPOSURE_TIME",   "SCANT",    "VAR", ".1 second",     0,     10000,    0,      10000, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 1,       "sec",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "OSC_WIDTH",       "SCANW",    "VAR", ".1 second", -36000.,   36000., -36000.,  36000., "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 150,      "deg",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "OSC_EPSTART",     "EPSTART",  "VAR", ".1 second", -36000.,   36000., -36000.,  36000., "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 150,      "deg",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "OSC_EPEND",       "EPEND",    "VAR", ".1 second", -36000.,   36000., -36000.,  36000., "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 150,     "deg",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "OSC_POS",         "OSC_POS",  "VAR", ".1 second", -36000.,   36000., -50000.,  50000., "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "deg",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "OSC_START",       "OSCSTART", "VAR", ".1 second", -36000.,   50000., -50000.,  50000., "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "deg",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "OSC_END",         "OSCEND",   "VAR", ".1 second", -36000.,   50000., -50000.,  50000., "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "deg",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "OSCSTATE",        "oscstate", "VAR", ".1 second",     0,      1,     0,     1, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "bool", "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "homeAs",         "homeAs",    "VAR", ".1 second",     0,      1,     0,     1, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "bool", "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "OSCEXEC",         "oscxq",    "VAR", ".1 second",     0,      1,     0,     1, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "bool", "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "LPOPEN",          "LPOPEN",   "VAR", ".1 second", -2000000000, 2000000000, -2000000000, 2000000000, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "steps", "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "LPCLO",           "LPCLO",    "VAR", ".1 second", -2000000000, 2000000000, -2000000000, 2000000000, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "steps", "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "OSCERES",         "OSCERES",  "VAR", ".1 second", -2000000000, 2000000000, -2000000000, 2000000000, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "steps", "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "OSCMRES",         "OSCMRES",  "VAR", ".1 second", -2000000000, 2000000000, -2000000000, 2000000000, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "steps", "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "STARTPOS",        "startpos", "VAR", ".1 second", -2000000000, 2000000000, -2000000000, 2000000000, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "steps", "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "STOPPOS",         "stoppos",  "VAR", ".1 second", -2000000000, 2000000000, -2000000000, 2000000000, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "steps", "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "TEMPPOS1",        "temppos1", "VAR", ".1 second", -2000000000, 2000000000, -2000000000, 2000000000, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,      "steps", "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "TEMPPOS",         "temppos",  "VAR", ".1 second", -2000000000, 2000000000, -2000000000, 2000000000, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "steps", "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "LTOPEN",          "LTOPEN",   "VAR", ".1 second", -2147483648, 2147483647, -2147483648, 2147483647, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,      "usec",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "LTCLO",           "LTCLO",    "VAR", ".1 second", -2147483648, 2147483647, -2147483648, 2147483647, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "usec",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "OSCOVHD",         "OSCOVHD",  "VAR", ".1 second", -2147483648, 2147483647, -2147483648, 2147483647, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "msec",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "SHMODE",          "shmode",   "VAR", ".1 second", -2147483648, 2147483647, -2147483648, 2147483647, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "bool",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "SHUTXQ",          "shutxq",   "VAR", ".1 second",    0,     1,   0  , 1                            , "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "bool",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "SHDONE",          "shdone",   "VAR", ".1 second", -2147483648, 2147483647, -2147483648, 2147483647, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "bool",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "MINE",            "MINE",     "VAR", ".1 second", -2147483648, 2147483647, -2147483648, 2147483647, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "bool",  "NO"}
+ {"X14B1:EX:Diff",   "Galil2183",     "MAXE",            "MAXE",     "VAR", ".1 second", -2147483648, 2147483647, -2147483648, 2147483647, "MINOR", "MINOR", "OFF", "Ok",  "MAJOR",    "NO_ALARM", 0,       "bool",  "NO"}
+
+}
+
+# end
+

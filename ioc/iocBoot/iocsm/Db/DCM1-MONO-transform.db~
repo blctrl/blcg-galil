@@ -1,0 +1,122 @@
+record(motor,"$(D):Soft_bragg") 
+{ 
+    field(DTYP,"Soft Channel") 
+    field(DESC,"Soft bragg")
+    field(OUT,"$(D):Convert1.A  PP MS") 
+    field(RDBL,"$(D):Convert2.E  NPP MS")   	
+    field(URIP,"Yes")             			 			
+    field(DINP,"$(D):Bragg.DMOV  NPP MS")   		
+    field(STOO,"$(D):Bragg.STOP  PP MS")
+    field(MRES,"0.0001") 
+    field(RRES,"1.000")                        		
+    field(PREC,"4") 
+    field(DHLM,"37000.8") 
+    field(DLLM,"5") 
+    field(TWV,"0") 
+    field(RTRY,"0")  					
+    field(EGU,"keV")
+}
+#***********************Bragg and energy convert*********
+
+
+record(transform,"$(D):Convert1") 
+{ 
+
+#    field(PREC,"8")
+#    field(INPB,"6.271")
+#    field(CLCC,"6.271")                      #Si(111)=6.271=2D,Si(311)=3.2749=2D
+#    field(CLCE,"12.3986525/(1*C*A)")                 #SIN(BRAGG)=12.4/(2NDE)
+#    field(CLCF,"57.2957795*3600*ASIN(E)")
+#    field(CLCG,"F")
+    field(DESC,"From energy to motor")
+    field(PREC,"8")
+    field(CLCC,"3.140639")
+    field(CLCE,"12.39842/(2*C*A)")            
+    field(CLCF,"57.2957795*3600*ASIN(E)")   #EGU:deg
+    field(OUTF,"$(D):Bragg.VAL PP MS")
+}
+
+record(transform,"$(D):Convert2") 
+{ 
+   
+#    field(PREC,"8")
+#    field(INPA,"$(D):Bragg.RBV  CP MS")  
+#    field(INPB,"6.271" )
+#    field(CLCC,"6.271")                      #Si(111)=6.271=2D,Si(311)=3.2749=2D
+#    field(CLCD,"SIN(A/(3600*57.2957795))")
+#    field(CLCE,"12.3986525/(1*C*D)")                       #SIN(BRAGG)=12.4/(2NDE)
+#    field(CLCI,"E")
+    field(DESC,"From motor to energy")
+    field(PREC,"8")
+    field(INPA,"$(D):Bragg.RBV  CP MS")  
+    field(CLCB,"MAX(A)<3600?3600:A")                      
+    field(CLCC,"3.140639")                      
+    field(CLCD,"SIN(B/(3600*57.2957795))")	   #EGU:deg
+    field(CLCE,"12.39842/(2*C*D)") 
+    field(CLCF,"E")
+    field(OUTI,"$(D):Convert1.A NPP MS")
+
+}
+
+record(transform,"$(D):Convert3") 
+{ 
+    field(DESC,"soft x stop link")
+    field(PREC,"0")
+    field(INPA,"$(D):Soft_bragg.STOP CP MS")
+    field(CLCB,"A")    
+    field(OUTA,"$(D):Bragg.STOP  PP MS")
+#    field(OUTB,"$(D):Bragg_down.STOP  PP MS")    		
+ 		
+}
+
+
+
+
+
+
+#***********************Bragg and T1 collaboration*********
+
+record(bi,"$(D):CoordinateIs") 
+{ 
+    field(DTYP,"Soft Channel") 
+#    field(DESC,"get CoordinateIs choice value")
+    field(ZNAM,"MANUL")
+    field(ONAM,"AUTO")
+#    field(PREC,"0")
+    field(FLNK, "$(D):Coordinate")
+}
+
+record(transform,"$(D):Coordinate") 
+{ 
+    field(DESC,"Coordinate Bragg - Z")
+    field(PREC,"0")
+    field(INPA,"$(D):CoordinateIs.VAL NPP NMS")
+    field(INPC,"$(D):Bragg.DMOV CP NMS")
+    field(CLCD,"!C")
+    field(CLCE,"A&&D")
+    field(CLCF,"B||E")  #the value of B from "Compensate" Button of the edm interface
+    field(OUTF,"$(D):BraggtoZ.DISV PP MS")
+    field(FLNK, "$(D):BraggtoZ")
+ 		
+}
+
+record(transform,"$(D):BraggtoZ") 
+{
+    field(DESC,"Calculate Z.val from Bragg ")
+    field(PREC,"3")
+    field(DISA,"0")
+    field(INPA,"$(D):Bragg.RBV CP MS")
+    field(CLCB,"A")	   #EGU:arcsec
+    field(CLCB,"MAX(A)<7200?7200:A")                      
+    field(CLCC,"12.5")                           #12.5/COS(3.1415926/6)")	
+    field(CLCD,"12.5/COS(B/(3600*57.2957795))")	#3.1415926/180=1/57.2957795
+    field(CLCE,"D-C")
+    field(CLCF,"E*(-1000)")
+    field(OUTF,"$(D):T1.VAL PP MS")
+}
+
+
+
+
+
+#####################end####################################

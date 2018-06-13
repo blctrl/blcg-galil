@@ -1,0 +1,138 @@
+record(motor,"X14W1:OP:Mono:Soft_bragg") 
+{ 
+    field(DTYP,"Soft Channel") 
+    field(DESC,"Soft bragg")
+    field(OUT,"X14W1:OP:Mono:Convert1.A  PP MS") 
+    field(RDBL,"X14W1:OP:Mono:Convert2.E  NPP MS")   	
+    field(URIP,"Yes")             			 			
+    field(DINP,"X14W1:OP:Mono:Bragg_up.DMOV  NPP MS")   		
+    field(STOO,"X14W1:OP:Mono:Bragg_up.STOP  PP MS")
+    field(MRES,"0.0001") 
+    field(RRES,"1.000")                        		
+    field(PREC,"4") 
+    field(DHLM,"37000.8") 
+    field(DLLM,"5") 
+    field(TWV,"0") 
+    field(RTRY,"0")  					
+    field(EGU,"keV")
+}
+#***********************Bragg and energy convert*********
+
+
+
+record(mbbi, "X14W1:OP:Mono:SiSelectEn")
+{
+	field(DESC, "Si select EnableIs")
+	field(ZRVL,"0")
+	field(ONVL,"1")
+	field(ZRST,"Disable")
+	field(ONST,"Enable")
+	field(VAL,"0")
+
+}
+
+
+record(transform,"X14W1:OP:Mono:Convert1") 
+{ 
+
+    field(PREC,"8")
+    field(INPB,"X14W1:OP:Mono:Convert4.A CP MS")
+    field(CLCC,"B?6.271:3.2749")                      #Si(111)=6.271=2D,Si(311)=3.2749=2D
+    field(CLCE,"12.3986525/(1*C*A)")                 #SIN(BRAGG)=12.4/(2NDE)
+    field(CLCF,"57.2957795*3600*ASIN(E)")
+    field(CLCG,"F")
+    field(OUTF,"X14W1:OP:Mono:Bragg_up.VAL PP MS")
+#    field(OUTG,"X14W1:OP:Mono:Bragg_down.VAL PP MS")
+}
+
+record(transform,"X14W1:OP:Mono:Convert2") 
+{ 
+   
+    field(PREC,"8")
+    field(INPA,"X14W1:OP:Mono:Bragg_up.RBV  CP MS")  
+    field(INPB,"X14W1:OP:Mono:Convert4.A CP MS" )
+    field(CLCC,"B?6.271:3.2749")                      #Si(111)=6.271=2D,Si(311)=3.2749=2D
+    field(CLCD,"SIN(A/(3600*57.2957795))")
+    field(CLCE,"12.3986525/(1*C*D)")                       #SIN(BRAGG)=12.4/(2NDE)
+#    field(INPF,"X14W1:OP:Mono:Bragg_down.RBV  CP MS")    		
+#    field(CLCG,"SIN(F/(3600*57.2957795))")
+#    field(CLCH,"12.3986525/(1*C*G)")                        #SIN(BRAGG)=12.4/(2NDE)
+    field(CLCI,"E")
+    field(OUTI,"X14W1:OP:Mono:Convert1.A NPP MS")
+
+}
+
+record(transform,"X14W1:OP:Mono:Convert3") 
+{ 
+    field(DESC,"soft x stop link")
+    field(PREC,"0")
+    field(INPA,"X14W1:OP:Mono:Soft_bragg.STOP CP MS")
+    field(CLCB,"A")    
+    field(OUTA,"X14W1:OP:Mono:Bragg_up.STOP  PP MS")
+#    field(OUTB,"X14W1:OP:Mono:Bragg_down.STOP  PP MS")    		
+ 		
+}
+record(transform,"X14W1:OP:Mono:Convert4") 
+{ 
+       				
+}
+
+
+
+
+
+
+#***********************Bragg and T2 collaboration*********
+
+record(bi,"X14W1:OP:Mono:CoordinateIs") 
+{ 
+    field(DTYP,"Soft Channel") 
+#    field(DESC,"get CoordinateIs choice value")
+    field(ZNAM,"MANUL")
+    field(ONAM,"AUTO")
+#    field(PREC,"0")
+    field(FLNK, "X14W1:OP:Mono:Coordinate")
+}
+
+record(transform,"X14W1:OP:Mono:Coordinate") 
+{ 
+    field(DESC,"Coordinate Bragg - Z")
+    field(PREC,"0")
+    field(INPA,"X14W1:OP:Mono:CoordinateIs.VAL NPP NMS")
+    field(INPC,"X14W1:OP:Mono:Bragg_up.DMOV CP NMS")
+    field(CLCD,"!C")
+    field(CLCE,"A&&D")
+    field(CLCF,"B||E")  #the value of B from "Compensate" Button of the edm interface
+    field(OUTF,"X14W1:OP:Mono:BraggtoZ.DISV PP MS")
+    field(FLNK, "X14W1:OP:Mono:BraggtoZ")
+ 		
+}
+
+record(transform,"X14W1:OP:Mono:BraggtoZ") 
+{
+    field(DESC,"Calculate Z.val from Bragg ")
+    field(PREC,"3")
+    field(DISA,"0")
+    field(INPA,"X14W1:OP:Mono:Bragg_up.RBV CP MS")
+    field(CLCB,"A")	   #EGU:arcsec
+    field(CLCC,"12.5")                           #12.5/COS(3.1415926/6)")	
+    field(CLCD,"12.5/COS(B/(3600*57.2957795))")	#3.1415926/180=1/57.2957795
+    field(CLCE,"D-C")
+    field(CLCF,"E")
+    field(OUTF,"X14W1:OP:Mono:T2.VAL PP MS")
+}
+
+
+
+#############################Wuyingfeng#Add for Hor and SS1&&PS2 ########################
+#record(transform,"X14W1:OP:HSP")
+#{
+    #field(DESC,"X14W1:FE:HSP")
+    #field(INPA,"X14W1:FE:SS1:OnSts1:BI CP NMS")
+    #field(INPB,"X14W1:FE:PS2:OnSts1:BI CP NMS")
+   # field(CLCD,"A||B")
+   # field(OUTD,"X14W1:OP:MONO:Hor.DISA PP NMS")
+##}
+
+
+#####################end####################################

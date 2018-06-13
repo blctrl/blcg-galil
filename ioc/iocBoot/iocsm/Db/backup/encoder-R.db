@@ -1,0 +1,32 @@
+
+
+record(bo,"DCM1:Pitch1_E-R") 
+{
+    field(DTYP,"Soft Channel") 
+    field(DESC,"Pitch1-Piezo:refresh")
+    field(SCAN,".1 second")
+    field(VAL,"1")
+    field(FLNK,"DCM1:Pitch1_E.PROC")
+
+} 
+
+
+record(bo,"DCM1:Bragg_E-R") 
+{
+    field(DTYP,"Soft Channel") 
+    field(DESC,"Pitch1-Piezo:refresh")
+    field(SCAN,".1 second")
+    field(VAL,"1")
+    field(FLNK,"DCM1:Bragg_E.PROC")
+
+} 
+
+record(bo,"DCM1:T1_E-R") 
+{
+    field(DTYP,"Soft Channel") 
+    field(DESC,"Pitch1-Piezo:refresh")
+    field(SCAN,".1 second")
+    field(VAL,"1")
+    field(FLNK,"DCM1:T1_E.PROC")
+
+} 

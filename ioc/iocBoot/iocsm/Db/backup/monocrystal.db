@@ -1,0 +1,46 @@
+record(stringin,"$(P):NoteMessage")
+{
+
+}
+
+record(ai,"$(P):StartPoint")
+{
+
+}
+
+record(ai,"$(P):EndPoint")
+{
+
+}
+
+record(ai,"$(P):nextPosi")
+{
+
+}
+record(ai,"$(P):Step")
+{
+	field("VAL",1.0)
+}
+
+record(ai,"$(P):ExposureTime")
+{
+	field("VAL",2.0)
+}
+
+record(ai,"$(P):Pause")
+{
+}
+
+
+record(ai, "$(P):CurrentSeg")
+{
+}
+
+record(ai, "$(P):TotalSeg")
+{
+}
+
+record(stringin, "$(P):LogFileName")
+{
+}
+

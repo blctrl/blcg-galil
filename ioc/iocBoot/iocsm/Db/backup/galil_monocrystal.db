@@ -1,0 +1,27 @@
+record(stringin,"$(P):NoticeString")
+{
+
+}
+
+record(ai,"$(P):EndPoint")
+{
+
+}
+
+
+record(ai,"$(P):Pause")
+{
+}
+
+record(ai, "$(P):CurrentSeg")
+{
+}
+
+record(ai, "$(P):TotalSeg")
+{
+}
+
+record(stringin, "$(P):LogFileName")
+{
+}
+

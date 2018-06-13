@@ -1,0 +1,51 @@
+# $File: //ASP/Dev/SBS/4_Controls/4_3_Network_Infrastructure/4_3_1_Comms_Common_Services/sw/device_drivers/Galil/1-5/galilTestApp/Db/galil_motor_withwrappers.substitutions $
+# $Revision: #3 $
+# $DateTime: 2012/03/22 09:46:31 $
+# $Author: cliftm $
+#
+# Description
+# Substitution file for motor_withwrappers.template
+#
+# MOVNFLNK FLNK when moving status is updated
+# LIMITFLNK FLNK when limits are updated
+# READBACK used to set read back to user or dial coordinates
+# 
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# Licence as published by the Free Software Foundation; either
+# version 2.1 of the Licence, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public Licence for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# Licence along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+# 
+# Contact details:
+# mark.clift@synchrotron.org.au
+# 800 Blackburn Road, Clayton, Victoria 3168, Australia.
+#
+
+file "$(GALIL)/GalilSup/Db/galil_motor.template"
+{
+pattern
+{   P,       M,   PORT,    ADDR, EGU, DESC, VELO, VBAS,  ACCL,  PREM,  POST,  BACC,  MRES,  SREV, ERES,  TWV,   PREC, DHLM,    DLLM,    VMAX,     UEIP, RTRY, PCOF, ICOF, DCOF}
+
+# Real motors #
+
+
+   {"X14B1:EX:Diff", "Phi", "Galil2183", 0,    deg,  "Motor: Phi",   0.50,  0.2,  0.2,       "SHA",     "",     .5,      .0004 , 5000,  0.0002,  1,  6,   180, -180,  1,       1,    2   , 0,    0,    0}
+   {"X14B1:EX:Diff", "B", "Galil2183", 1,    deg,  "chn 2",   0.50,    0.20,    0.2,     "SHB",    "",    .5,     .0002 , 5000,  0.0002, 1, 6,  360, -360, 1,       0,    0   , 0,    0,    0}
+   {"X14B1:EX:Diff", "TTH", "Galil2183", 2,    deg,  "Motor: TTH",   0.50,    0.20,    0.2,     "SHC",    "",    .5,     .0002 , 5000,  0.000025, 1, 6,  180, -45, 1,       1,    2   , 0,    0,    0}
+   {"X14B1:EX:Diff", "D", "Galil2183", 3,    um,  "chn 4",   500,    100,    0.2,     "SHD",     "MOD",     .5,     .25, 1000, 0.25, 1,   5,    42273.3, -42273.3, 1000,       0,    0   , 0,    0,    0}
+   {"X14B1:EX:Diff", "TH", "Galil2183", 4,    deg,  "Motor: TH",  0.50,    0.20,    0.2,     "SHE",    "",    .5,     .0002 , 5000,  0.000025, 1, 6,  180, -45, 1,       1,    2   , 0,    0,    0}
+   {"X14B1:EX:CCD", "X", "Galil2183", 5,    mm,  "CCD X",   12,    2,    0.2,     "SHF",     "MOF",     .5,     .0025, 2000, 0.0025,  1,  5,    1200, -1000, 20,       0,    0   , 0,    0,    0}
+   {"X14B1:EX:CCD", "Y", "Galil2183", 6,    mm,  "CCD Y",   10,    2,    0.2,     "SHG",     "MOG",     .5,    .0025,  2000, .0025, 1,   5,     65, -50,  20,       0,    0   , 0,    0,    0}
+   {"X14B1:EX:CCD", "Z", "Galil2183", 7,    mm,  "CCD Z",   1,    .2,    0.5,     "SHH",     "MOH",     .5,     .00125, 200, 0.00125,  1,  5,   400, -10, 2,       0,    0   , 0,    0,    0}
+
+}
+# end
+
