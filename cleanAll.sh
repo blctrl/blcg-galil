@@ -1,15 +1,15 @@
 cd base-3.16.1
-make clean
+make clean uninstall
 cd ..
 
 cd ioc 
-make clean
+make clean uninstall
 cd ..
 
 cd support
 
 cd ipac
-make clean
+make clean uninstall
 cd ..
 
 cd seq
@@ -17,11 +17,11 @@ make
 cd ..
 
 cd asyn
-make clean
+make clean uninstall
 cd ..
 
 cd autosave
-make clean
+make clean uninstall
 cd ..
 
 cd busy
@@ -29,11 +29,11 @@ make  clean
 cd ..
 
 cd sscan
-make clean
+make clean uninstall
 cd ..
 
 cd calc
-make clean
+make clean uninstall
 cd ..
 
 cd motor
